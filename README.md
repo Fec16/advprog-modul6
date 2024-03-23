@@ -54,3 +54,9 @@ fn main() {
 - To use ThreadPool with a size of 4 to handle incoming TCP connections, each connection will be handled by a thread available in the ThreadPool. To make the ThreadPool work, we add it in `src/lib.rs`.
 
 - By adding `src/lib.rs`, we create a ThreadPool structure capable of managing a collection of worker threads. Each worker thread within the ThreadPool will receive tasks sent through a channel managed by a sender. Whenever a new task is sent, a worker thread will take that task from the channel and execute it. Thus, we can use this ThreadPool to handle tasks concurrently, such as in the case of handling TCP connections as seen in the `main()` method in the file `src/main.rs`.
+
+
+### Bonus Reflection Notes
+- It is recommended to replace the `new` method with `build`, which returns `Result`. Then, when the value is returned to the caller, it can be unwrapped to get the value of the execution result.
+- In this implementation, the `build` method replaces the `new` method. This method takes the size of the ThreadPool as a parameter and returns a new instance of the ThreadPool. Inside the `build` method, we use the `map` function to create a vector of worker threads, similar to what is done in the `new` method. 
+- This provides a cleaner separation between the construction of the ThreadPool and its usage, making the code easier to understand. Additionally, it follows the *`Single Responsibility Principle`*, with each function having a clear and specific purpose.
