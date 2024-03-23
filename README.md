@@ -29,3 +29,11 @@ The modified `handle_connection` function acts as a simple HTTP server. It reads
 - If the request is not for the root path, it responds with a status line `HTTP/1.1 404 NOT FOUND` then sends the content of a file named `404.html` to the client.
 
 ![Commit 3 screen capture](/assets/images/commit3.png)
+
+
+### Commit 4 Reflection Notes
+The modified `handle_connection` function, extends the functionality of the server to handle a special case where if the client requests `GET /sleep HTTP/1.1`, the server sleeps for 5 seconds before responding with the content of `hello.html`.
+
+- So if the received path is `/sleep`, then the program will sleep for 5 seconds. Afterward, the server proceeds to generate a response with the status line `HTTP/1.1 200 OK` and serves the file `hello.html` as its displayed content.
+- This delay demonstrates how server response time can affect user experience, especially in scenarios where multiple users may simultaneously access the website. Introducing response delays is certainly not desirable as it forces people to wait before accessing the content.
+
